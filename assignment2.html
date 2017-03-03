@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Assignments 2</title>
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="../jquery-3.1.1.js"></script>
+<script>
+
+	function validateEmail(email)
+	{
+	 var cemail = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	 if (cemail.test(email)){
+	 return true; }
+	 else{
+	 return false;
+	 }
+	}
+	$(document).ready(function(){
+		
+		$("#sv").click(function(){
+			var email = $("#email").val();
+			var pass = $("#password").val();
+			var cpass = $("#cpassword").val();
+			
+			if(email=="")
+			{
+				alert("Enter the email");
+				$("#email").focus();
+			}
+			else if(!validateEmail(email))
+			{
+				alert("Enter Correct Email Format");
+				$("#email").focus();
+			}
+			else if(pass == "")
+			{
+				alert("Enter The Password");
+				$("#password").focus();
+			}
+			else if(cpass == "")
+			{
+				alert("Enter Confirm Password");
+				$("#cpassword").focus();
+			}
+			else if(pass != cpass)
+			{
+				alert("Confirm Password Not Match");
+				$("#cpassword").focus();
+			}
+			else if(!$("#ag").is(':checked'))
+			{
+				alert("Please Agree To Term And Conditions");
+				$("#ag").focus();
+			}
+			else
+			{
+				alert("Congress ! Form Submitted");
+			}
+		});
+	});
+
+</script>
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+		<label>Email</label>
+		<div><input type="email" name="email" id="email"></div>
+	</div>
+	<div class="row">
+		<label>Password</label>
+		<div><input type="password" name="password" id="password"></div>
+	</div>
+	<div class="row">
+		<label>Confirm Password</label>
+		<div><input type="password" name="cpassword" id="cpassword"></div>
+	</div>
+	<div class="row">
+		
+		<div><input type="checkbox" name="ag" id="ag"><p>Agree To Term And Conditions</p></div>
+	</div>
+	<div class="row">
+		
+		<div><input type="submit" class="btn btn-success" name="sv" id="sv" value="Sign-Up"></div>
+	</div>
+</div>
+</body>
+</html>

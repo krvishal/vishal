@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+</!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment 3</title>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="../jquery-3.1.1.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#prevent").click(function(){
+				event.preventDefault();
+				$("#msg").html("Event prevent");
+			});
+		
+			$("#click").click(function(){
+				$("#click1").html("click event");
+				
+			});
+
+			$("li").hover(function(){
+				$("#hover").html("hover event");
+			});
+
+			$("#focus").focus(function(){
+				alert("Focus Event");
+			});
+
+			$("#mouseover").mouseover(function(){
+				$("#mouse").html("mouse over");
+				
+			});
+			$("#mouseout").mouseout(function(){
+				$("#mouse").html("mouse out");
+			});
+
+		});
+	</script>
+</head>
+<body>
+<div class="container">
+	<div class="col-md-4 col-sm-4">
+		<div class="row">
+			<label>Event On Different Anchor Tag</label>
+		</div>
+		
+		<div class="row">
+		<span id="click1"></span>
+		<br>
+			<div><a href="#" id="click" name="click">Click Here</a></div>
+		</div>
+		<div class="row">
+			<label>Hover </label>
+			<div>
+			<span id="hover"></span>
+			<br>
+			<ul>
+				<li>First</li>
+				<li>Second</li>
+			</ul> </div>
+		</div>
+		<div class="row">
+			<label>Focus Event</label>
+			<span id="focus1"></span>
+			<br>
+			<div><a href="" id="focus" name="focus">Focus</a></div>
+		</div>
+		<div class="row">
+			<label>Mouse Event</label>
+			<div id="mover">
+			<span id="mouse"></span>
+			<br>
+			<a href="#" id="mouseover" name="mover">Mouseover Here</a></div>
+			<a href="#" id="mouseout" name="mout">Mouseover Here</a></div>
+		</div>
+		<div class="row">
+			<label>Prevent Event</label>
+			<div class="row">
+				<span id="msg"></span>
+				<br>
+				<a href="www.google.com" id="prevent"> Google</a>
+			</div>
+		</div>
+
+		
+</div>
+
+</body>
+</html>
