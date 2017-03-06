@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nivo Slider</title>
+	<!--bootstrap-->
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+	<!--nivo slider css-->
+	<link rel="stylesheet" type="text/css" href="../nivo-slider/nivo-slider.css">
+	<link rel="stylesheet" type="text/css" href="../nivo-slider/themes/light/light.css">
+	<!--jquery-->
+	<script type="text/javascript" src="../jquery-3.1.1.js"></script>
+	<!--nivo slider js-->
+	<script type="text/javascript" src="../nivo-slider/jquery.nivo.slider.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#slidernivo').nivoSlider({
+				effect:'random',
+				slices : 15,
+				boxClos : 8,
+				boxRows : 4,
+				animSpeed : 500,
+				pauseTime : 3000,
+				startSlide : 0,
+				controlNav : true,
+				controlNavThumbs : false
+			});
+		});
+	</script>
+</head>
+<body>
+<div class="col-md-8 col-sm-8">
+<div id="slidernivo">
+<img src="image/image.jpg">
+<img src="image/image2.jpg">
+<img src="image/image3.jpg">
+</div>
+</div>
+</body>
+</html>
