@@ -24,11 +24,11 @@
 <span id="message">To Get Data Click On Button</span><br>
 <div class="display_data" hidden>
 	<table border='1' id="data_table">
-	<tr>
-		<td>First Name</td>
-		<td>Last Name</td>
-		<td>Date Of Birth</td>
-	</tr>
+		<tr>
+			<td>First Name</td>
+			<td>Last Name</td>
+			<td>Date Of Birth</td>
+		</tr>
 	</table>
 </div>
 <input type="button" name="getdata" value="Get Data" id="getdata">
