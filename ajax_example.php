@@ -107,14 +107,7 @@
 </div>
 </form>
 <div id="dispaly_result" >
-	<table border="1" style="margin-top:20px;margin-left:30px" width="350" id="result_table">
-	<tr>
-		<th>Name</th>
-		<th>Email</th>
-		<th>Message</th>
-		<th>Date</th>
-	</tr>
-	
+	<table border="1" style="margin-top:20px;margin-left:30px" width="350" id="result_table">	
 	</table>
 </div>
 </body>
