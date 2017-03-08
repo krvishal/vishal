@@ -12,9 +12,8 @@
 				type:'POST',
 				success:function(response){
 						var data = JSON.parse(response);
-						var showdata;
-						showdata =("<tr><th>Name</th><th>Email</th><th>Message</th><th>Date</th></tr>");
-						$.each(data,function(i,results){
+						var showdata =("<tr><th>Name</th><th>Email</th><th>Message</th><th>Date</th></tr>");
+						$.each(data,function(i){
 							showdata +=("<tr><td>"+data[i].name+"</td><td>"+data[i].email+"</td><td>"+data[i].message+"</td><td>"+data[i].date+"</td></tr>");
 						});
 						$('#result_table').html(showdata);
@@ -83,8 +82,8 @@
 	</script>
 </head>
 <body>
-<form>
 <div style="margin-top:30px;margin-left:90px" height="auto" width="300px" id="submit_form">
+	<form>
 		<div>
 			<label>Name</label>
 			<input type="text" name="name" id="name" placeholder="Enter Your Name" style="margin-left:20px">
@@ -104,10 +103,11 @@
 		<div>
 			<input type="submit" name="save" id="save" style="margin-top:10px;margin-left:30px">
 		</div>
+	</form>
 </div>
-</form>
 <div id="dispaly_result" >
 	<table border="1" style="margin-top:20px;margin-left:30px" width="350" id="result_table">	
+	<tr></tr>
 	</table>
 </div>
 </body>
