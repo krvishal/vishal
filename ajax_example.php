@@ -73,6 +73,10 @@
 						data:{"name" : name,"email" : email,"message" : message,"date" : date},
 						success:function(data){
 								alert(data);
+								$('#name').val("");
+								$('#email').val("");
+								$('#message').val("");
+								$('#date').val("");
 						}
 					});
 				}
@@ -83,27 +87,25 @@
 </head>
 <body>
 <div style="margin-top:30px;margin-left:90px" height="auto" width="300px" id="submit_form">
-	<form>
-		<div>
-			<label>Name</label>
-			<input type="text" name="name" id="name" placeholder="Enter Your Name" style="margin-left:20px">
-		</div>
-		<div>
-			<label>Email</label>
-			<input type="email" name="email" id="email" placeholder="Enter Your Email" style="margin-left:20px">
-		</div>
-		<div>
-			<label>Message</label>
-			<textarea id="message" name="message" rows="4" cols="19" placeholder="Any Commits" style="margin-left:2px"></textarea>
-		</div>
-		<div>
-			<label>Date</label>
-			<input type="date" name="date" id="date" style="margin-left:28px">
-		</div>
-		<div>
-			<input type="submit" name="save" id="save" style="margin-top:10px;margin-left:30px">
-		</div>
-	</form>
+	<div>
+		<label>Name</label>
+		<input type="text" name="name" id="name" placeholder="Enter Your Name" style="margin-left:20px">
+	</div>
+	<div>
+		<label>Email</label>
+		<input type="email" name="email" id="email" placeholder="Enter Your Email" style="margin-left:20px">
+	</div>
+	<div>
+		<label>Message</label>
+		<textarea id="message" name="message" rows="4" cols="19" placeholder="Any Commits" style="margin-left:2px"></textarea>
+	</div>
+	<div>
+		<label>Date</label>
+		<input type="date" name="date" id="date" style="margin-left:28px">
+	</div>
+	<div>
+		<input type="submit" name="save" id="save" style="margin-top:10px;margin-left:30px">
+	</div>
 </div>
 <div id="dispaly_result" >
 	<table border="1" style="margin-top:20px;margin-left:30px" width="350" id="result_table">	
