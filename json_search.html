@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Json Example</title>
+	<!--jquery-->
+	<script type="text/javascript" src="../../jquery-3.1.1.js"></script>
+	<!--lodash-->
+	<script type="text/javascript" src="../../lodash.js"></script>
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$("#getdata").click(function(){
+				$.getJSON("json_array.json",function(data){
+					$.each(data,function(i,detail){
+						$.each(detail,function(i,results){
+							$('#data_table').append("<tr><td>"+results.firstname+"</td><td>"+results.lastname+"</td><td>"+results.dob+"</td></tr>");
+						});
+					});
+				});
+				$("#message").hide();
+				$(".display_data").show();
+			});
+			$('#search').click(function(){
+				var searchtoken=$('#search_txt').val();
+				if(searchtoken=="")
+				{
+					alert("Enter Value for Search");
+					$('#search_txt').focus();
+				}
+				else
+				{
+					$.getJSON("json_array.json",function(data){
+					$.each(data,function(index,details){
+						$.each(details,function(array,result){
+							if(result.firstname==searchtoken)
+							{
+								$('#search_result').html("<td>"+result.firstname+"</td><td>"+result.lastname+"</td><td>"+result.dob+"</td>");
+							}
+						});
+					});
+					});
+					$('#search_msg').html("Result is :");
+					$('.search_data').show();
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+<span id="message">To Get Data Click On Button</span><br>
+<div class="display_data" hidden>
+	<table border='1' id="data_table">
+		<tr>
+			<td>First Name</td>
+			<td>Last Name</td>
+			<td>Date Of Birth</td>
+		</tr>
+	</table>
+</div>
+<input type="button" name="getdata" value="Get Data" id="getdata">
+<br>
+<span id="search_msg">Search Form Json(By value)</span><br>
+<input type="text" name="search_txt" id="search_txt" placeholder="Search by first name">
+<input type="button" name="search" id="search" value="Search" >
+<div class="search_data" hidden>
+	<table border='1' id="search_table">
+		<tr>
+			<td>First Name</td>
+			<td>Last Name</td>
+			<td>Date Of Birth</td>
+		</tr>
+		<tr id="search_result"></tr>
+	</table>
+</div>
+</body>
+</html>
