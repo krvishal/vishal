@@ -18,9 +18,11 @@
 				success:function(response){
 						var data = JSON.parse(response);
 						var showdata =("<thead><tr><th>Name</th><th>Email</th><th>Message</th><th>Date</th></tr></thead>");
+						//lodash implement
 						_.forEach(data,function(i){
 							showdata +=("<tr><td>"+i.name+"</td><td>"+i.email+"</td><td>"+i.message+"</td><td>"+i.date+"</td></tr>");
 						});
+						//close lodash implement
 						$('#result_table').html(showdata);
 				}
 			});	
@@ -87,6 +89,8 @@
 				}
 			});
 		});
+		// var refresh=_.throttle(function(){ data_refresh();},1000);
+		// refresh();
 		setInterval(data_refresh,1000);
 	</script>
 </head>

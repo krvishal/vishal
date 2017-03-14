@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Json Example</title>
+	<title>lodash Example</title>
 	<!--jquery-->
 	<script type="text/javascript" src="../jquery-3.1.1.js"></script>
 	<!--lodash-->
@@ -10,12 +10,13 @@
 		$(document).ready(function(){
 			$("#getdata").click(function(){
 				$.getJSON("json_array.json",function(data){
+					//lodash implement
 					_.each(data,function(details){
 						_.each(details,function(results){
 							$('#data_table').append("<tr><td>"+results.firstname+"</td><td>"+results.lastname+"</td><td>"+results.dob+"</td></tr>");
-						});
-
+						});						
 					});
+					//close lodash implementation
 				});
 				$("#message").hide();
 				$(".display_data").show();
