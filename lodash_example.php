@@ -89,9 +89,9 @@
 				}
 			});
 		});
-		// var refresh=_.throttle(function(){ data_refresh();},1000);
-		// refresh();
-		setInterval(data_refresh,1000);
+		 var refresh=_.throttle(function(){ data_refresh();},1000);
+		 refresh();
+		//setInterval(data_refresh,1000);
 	</script>
 </head>
 <body>
