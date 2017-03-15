@@ -39,6 +39,12 @@
 				$.each(newobject,function(index,details){
 					$('#sort_table').append("<tr><td>"+details.firstname+"</td><td>"+details.lastname+"</td><td>"+details.dob+"</td></tr>");
 				});
+<<<<<<< HEAD
+				$('#message').html("Before sorting json array is :");
+				$('#message').show();
+				$('#sort_msg').html('After sorting json array is :');
+=======
+>>>>>>> 09e6918c6c6c10ba9c86e71f2ccdda2e82861acf
 				$('.sort_data').show();
 				});
 			});
@@ -57,9 +63,16 @@
 	</table>
 </div>
 <input type="button" name="getdata" value="Get Data" id="getdata">
+<<<<<<< HEAD
+<input type="button" name="sortdata" value="SortByFirstname" id="sortdata">
+<br>
+<div class="sort_data" hidden>
+	<span id="sort_msg"></span>
+=======
 <input type="button" name="sortdata" value="Sort" id="sortdata">
 <br>
 <div class="sort_data" hidden>
+>>>>>>> 09e6918c6c6c10ba9c86e71f2ccdda2e82861acf
 	<table border='1' id="sort_table">
 		<tr>
 			<td>First Name</td>
