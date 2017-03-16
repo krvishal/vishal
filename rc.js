@@ -7,13 +7,13 @@ const user = {
   lastName: 'Perez'
 };
 
-const element = (
+const elements = (
   <h1>
     Hello, {formatName(user)}!
   </h1>
 );
 
 ReactDOM.render(
-  element,
+  elements,
   document.getElementById('root')
 );
