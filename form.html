@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>React</title>
+	<script src="js/react.min.js"></script>
+	<script src="js/react-dom.min.js"></script>
+	<script src="js/babel.min.js"></script>
+	</head>
+<body>
+		<div id="root"> </div>
+		<script type="text/babel">
+		class NameForm extends React.Component {
+		  constructor(props) {
+		    super(props);
+		    this.state = {
+					userName :'hELLO',
+					userAdd : 'hello'
+				};
+		    this.handleInputChange = this.handleInputChange.bind(this);
+		    this.handleSubmit = this.handleSubmit.bind(this);
+		  }
+		  handleInputChange(event) {
+				const target = event.target;
+    		const value = target.type === 'textarea' ? target.value : target.value;
+    		const name = target.name;
+		    this.setState({[name]:value.toLowerCase()});
+		  }
+		  handleSubmit(event) {
+		    alert('A name was submitted: ' + this.state.value);
+		    event.preventDefault();
+		  }
+		  render() {
+		    return (
+		      <form onSubmit={this.handleSubmit}>
+						<label>
+						Input Box
+						</label>
+						<br />
+		        <label>
+		          Name:
+		          <input	name="userName"	type="text"	 value={this.state.userName}	  onChange={this.handleInputChange} />
+		        </label>
+						<br />
+						<label>
+							Text Area
+						</label>
+						<br />
+						<label>
+		          Name:
+		          <textarea	name='userAdd'	 value={this.state.userAdd}  onChange={this.handleInputChange} />
+		        </label>
+		        <input type="submit" value="Submit" />
+		      </form>
+		    );
+		  }
+		}
+		ReactDOM.render(
+		  <NameForm />,
+		  document.getElementById('root')
+		);
+		</script>
+</body>
+</html>
