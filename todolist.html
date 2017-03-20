@@ -22,13 +22,21 @@
       class List extends React.Component{
         constructor(props){
           super(props);
-          this.handleChecked=this.handleChecked.bind(this);
+          this.state={
+            isChecked:'false'
+          }
         }
+        handleChange(e){
+          this.setStatus(prevState=>({
+            'true':'false'
+          }));
+        }
+
         render(){
           return(
-            <div>
-            <input type="checkbox" name="isChecked" onClick={this.handleChecked} className="form-check-input"/>  hello  {this.props.name}
-            </div>
+            <li className="list-group-item">
+            <input type="checkbox" onChange={()=>this.handleChange} name="isChecked"  className="form-check-input"/>  hello  {this.props.name} {this.Badge}
+            </li>
           );
         }
       }
@@ -36,9 +44,9 @@
     class InputText extends React.Component{
       render(){
         return(
-          <div>
+          <ul type="none" className="list-group">
             <List name={this.props.inputText} />
-          </div>
+          </ul>
         );
       }
     }
