@@ -45,20 +45,14 @@
       render(){
         return(
           <ul type="none" className="list-group">
-            <List name={this.props.inputText} />
+            <List name="vishal" />
+            <List name="deepak" />
           </ul>
         );
       }
     }
-    function Display(){
-      return(
-      <div>
-        <InputText inputText="vishal" />
-        <InputText inputText="deepak" />
-      </div>
-    );
-    }
-    ReactDOM.render(<Display />,document.getElementById('container'));
+
+    ReactDOM.render(<InputText />,document.getElementById('container'));
   </script>
 </body>
 </html>
