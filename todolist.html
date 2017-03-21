@@ -6,6 +6,8 @@
   <script src="js/react.min.js"></script>
   <script src="js/react-dom.min.js"></script>
   <script src="js/babel.min.js"></script>
+  <!-- <script src="bootstrap/jquery-3.1.1.js"></script>
+  <script src="bootstrap/lodash.js"></script> -->
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -33,7 +35,7 @@
           console.log(this.state.isChecked);
           return(
             <li className="list-group-item">
-            <input type="checkbox" onChange={this.handleChange} name="isChecked"  className="form-check-input"/>  hello  {this.props.name} {Badge}
+            <input type="checkbox" onChange={this.handleChange} name="isChecked"  className="form-check-input"/>   {this.props.name} {Badge}
             </li>
           );
         }
@@ -43,34 +45,52 @@
       constructor(props){
         super(props);
         this.state={
-          text:''
+          input:''
         };
-        this.addtodo=this.addtodo.bind(this);
+        this.addTodo=this.addTodo.bind(this);
+        this.handleClick=this.handleClick.bind(this);
+      }
+      addTodo(e){
+        this.setState({input : e.target.value});
+      }
+      handleClick(){
+        console.log(this.state.input);
+         let name= this.state.input;
+         this.props.onChange(name);
       }
       render(){
         return(
-          <form onSubmit={this.add}>
+          <form >
             <div className="form-group">
               <label>TODO</label>
               <br />
-              <input type='text' className="form-control" value={this.state.text} placeholder="Your Todo.." />
+              <input type='text' className="form-control" onChange={this.addTodo} placeholder="Your Todo.." />
             </div>
-            <button type="submit" className="btn btn-default">Submit</button>
+            <button type="submit" className="btn btn-default" onClick={this.handleClick}>Submit</button>
           </form>
         );
       }
     }
     //display result
     class InputText extends React.Component{
+      constructor(){
+        super();
+        this.state={
+          lists:''
+        };
+      }
+    GetName (newName){
+        this.setState({ lists : newName });
+      }
       render(){
         return(
           <div className="col-md-5" >
             <label>TODO App</label>
             <br />
             <ul type="none" className="list-group">
-            <List name="vishal" />
-            <List name="deepak" />
-          </ul>
+              <List name={this.state.list} />
+            </ul>
+          <AddTodo  onChange={this.GetName}/>
           </div>
         );
       }
