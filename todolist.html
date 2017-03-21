@@ -11,11 +11,7 @@
 <body>
   <div class="container" style="margin-top:100px">
       <div class="col-md-3"></div>
-      <div class="col-md-5" >
-        <label>TODO App</label>
-        <br />
         <div id="container"></div>
-      </div>
   </div>
   <script type="text/babel">
 
@@ -23,31 +19,59 @@
         constructor(props){
           super(props);
           this.state={
-            isChecked:'false'
-          }
+            isChecked:false
+          };
+          this.handleChange=this.handleChange.bind(this);
         }
-        handleChange(e){
-          this.setStatus(prevState=>({
-            'true':'false'
-          }));
+        handleChange(){
+          let checkBadge=this.state.isChecked==false?true:false;
+          this.setState({isChecked:checkBadge});
         }
 
         render(){
+          var Badge=this.state.isChecked==true?<span className="badge">Completed</span>:"";
+          console.log(this.state.isChecked);
           return(
             <li className="list-group-item">
-            <input type="checkbox" onChange={()=>this.handleChange} name="isChecked"  className="form-check-input"/>  hello  {this.props.name} {this.Badge}
+            <input type="checkbox" onChange={this.handleChange} name="isChecked"  className="form-check-input"/>  hello  {this.props.name} {Badge}
             </li>
           );
         }
       }
-
+      //add form
+    class AddTodo extends React.Component{
+      constructor(props){
+        super(props);
+        this.state={
+          text:''
+        };
+        this.addtodo=this.addtodo.bind(this);
+      }
+      render(){
+        return(
+          <form onSubmit={this.add}>
+            <div className="form-group">
+              <label>TODO</label>
+              <br />
+              <input type='text' className="form-control" value={this.state.text} placeholder="Your Todo.." />
+            </div>
+            <button type="submit" className="btn btn-default">Submit</button>
+          </form>
+        );
+      }
+    }
+    //display result
     class InputText extends React.Component{
       render(){
         return(
-          <ul type="none" className="list-group">
+          <div className="col-md-5" >
+            <label>TODO App</label>
+            <br />
+            <ul type="none" className="list-group">
             <List name="vishal" />
             <List name="deepak" />
           </ul>
+          </div>
         );
       }
     }
