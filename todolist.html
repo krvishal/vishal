@@ -6,8 +6,8 @@
   <script src="js/react.min.js"></script>
   <script src="js/react-dom.min.js"></script>
   <script src="js/babel.min.js"></script>
-  <!-- <script src="bootstrap/jquery-3.1.1.js"></script>
-  <script src="bootstrap/lodash.js"></script> -->
+  <!-- <script src="bootstrap/jquery-3.1.1.js"></script> -->
+  <script src="bootstrap/lodash.js"></script>
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -32,7 +32,7 @@
 
         render(){
           var Badge=this.state.isChecked==true?<span className="badge">Completed</span>:"";
-          console.log(this.state.isChecked);
+          //console.log(this.state.isChecked);
           return(
             <li className="list-group-item">
             <input type="checkbox" onChange={this.handleChange} name="isChecked"  className="form-check-input"/>   {this.props.name} {Badge}
@@ -54,9 +54,8 @@
         this.setState({input : e.target.value});
       }
       handleClick(){
-        console.log(this.state.input);
          let name= this.state.input;
-         this.props.onChange(name);
+         this.props.handleClick(name);
       }
       render(){
         return(
@@ -76,11 +75,12 @@
       constructor(){
         super();
         this.state={
-          lists:''
+          lists:'hello'
         };
       }
     GetName (newName){
-        this.setState({ lists : newName });
+        console.log(newName);
+          this.setState({lists : newName});
       }
       render(){
         return(
@@ -88,9 +88,9 @@
             <label>TODO App</label>
             <br />
             <ul type="none" className="list-group">
-              <List name={this.state.list} />
+              <List name={this.state.lists} />
             </ul>
-          <AddTodo  onChange={this.GetName}/>
+          <AddTodo  handleClick={this.GetName}/>
           </div>
         );
       }
