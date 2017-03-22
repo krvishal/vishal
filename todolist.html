@@ -75,7 +75,7 @@
         return(
           <form >
             <div className="form-group">
-              <input type='text' className="form-control" onChange={this.addTodo} value={this.state.input} placeholder="Your Todo.." />
+              <input type='text' className="form-control" rel="newName" onChange={()=>this.props.newName(this.refs.newName.value)} value={this.state.input} placeholder="Your Todo.." />
             </div>
             <button type="submit" className="btn btn-default" onClick={this.handleClick}>Submit</button>
           </form>
@@ -124,7 +124,7 @@
         return(
           <div className="col-md-5" >
             <List name={this.state.todoList} />
-            <AddTodo  handleClick={this.GetName}/>
+            <AddTodo  onChange={this.GetName}/>
           </div>
         );
       }
