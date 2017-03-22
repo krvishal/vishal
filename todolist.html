@@ -5,10 +5,10 @@
   <script src="js/react.min.js"></script>
   <script src="js/react-dom.min.js"></script>
   <script src="js/babel.min.js"></script>
-  <script src="bootstrap/jquery-3.1.1.js"></script>
+  <!-- <script src="bootstrap/jquery-3.1.1.js"></script> -->
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <script src="bootstrap/lodash.js"></script>
-<head />
+</head>
 <body>
   <div class="container" style="margin-top:100px">
       <div class="col-md-3"></div>
@@ -96,7 +96,7 @@
       };
       this.GetName=this.GetName.bind(this);
     }
-    GetName (newName){
+    getName (newName){
         if(newName.key!==-1){
           let list=this.state.list;
           list=map(list,(e)=>{
@@ -108,14 +108,14 @@
           });
           this.setState({
             list:list,
-            currList:clone(this.list)
+            currList:_.clone(this.list)
           });
         }else{
           let list=this.state.list;
           list.unshift({name:newName.name,marked:false,key:new Date().getTime()});
           this.setState({
             list:list,
-            currList:clone(this.list)
+            currList:_.clone(this.list)
           });
         }
       }
@@ -123,7 +123,7 @@
         return(
           <div className="col-md-5" >
             <List name={this.state.todoList} />
-            <AddTodo  onChange={this.GetName}/>
+            <AddTodo  onChange={this.getName}/>
           </div>
         );
       }
