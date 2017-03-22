@@ -6,7 +6,7 @@
   <script src="js/react.min.js"></script>
   <script src="js/react-dom.min.js"></script>
   <script src="js/babel.min.js"></script>
-  <!-- <script src="bootstrap/jquery-3.1.1.js"></script> -->
+  <script src="bootstrap/jquery-3.1.1.js"></script>
   <script src="bootstrap/lodash.js"></script>
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -17,27 +17,39 @@
   </div>
   <script type="text/babel">
 
-      class List extends React.Component{
-        constructor(props){
-          super(props);
-          this.state={
-            isChecked:false
-          };
-          this.handleChange=this.handleChange.bind(this);
+      class Row  extends React.Component{
+        constructor(){
+            super();
+            this.state={
+              isChecked:false
+            };
+            this.handleChange=this.handleChange.bind(this);
         }
         handleChange(){
           let checkBadge=this.state.isChecked==false?true:false;
           this.setState({isChecked:checkBadge});
         }
-
         render(){
-          var Badge=this.state.isChecked==true?<span className="badge">Completed</span>:"";
-          //console.log(this.state.isChecked);
+          let Badge=this.state.isChecked==true?<span className="badge">Completed</span>:"";
+          console.log(this.props.name);
           return(
             <li className="list-group-item">
-            <input type="checkbox" onChange={this.handleChange} name="isChecked"  className="form-check-input"/>   {this.props.name} {Badge}
-            </li>
+            <input type="checkbox" onClick={this.handleChange} name="isChecked"  className="form-check-input"/>    {this.props.name} {Badge}
+             </li>
           );
+        }
+      }
+      class List extends React.Component{
+        render(){
+        var listRow=<Row name={this.props.name}/>;
+        var listTodo=this.props.name==""?"":listRow;
+        return(
+          <ul className="list-group">
+          <label>TODO App</label>
+          <br />
+            {listTodo}
+          </ul>
+        );
         }
       }
       //add form
@@ -53,17 +65,17 @@
       addTodo(e){
         this.setState({input : e.target.value});
       }
-      handleClick(){
+      handleClick(e){
+        e.preventDefault();
          let name= this.state.input;
          this.props.handleClick(name);
+         this.setState({input:''});
       }
       render(){
         return(
           <form >
             <div className="form-group">
-              <label>TODO</label>
-              <br />
-              <input type='text' className="form-control" onChange={this.addTodo} placeholder="Your Todo.." />
+              <input type='text' className="form-control" onChange={this.addTodo} value={this.state.input} placeholder="Your Todo.." />
             </div>
             <button type="submit" className="btn btn-default" onClick={this.handleClick}>Submit</button>
           </form>
@@ -72,25 +84,47 @@
     }
     //display result
     class InputText extends React.Component{
-      constructor(){
-        super();
-        this.state={
-          lists:'hello'
-        };
-      }
+    constructor(props){
+      super(props);
+      this.list={
+        name:'',
+        marked:false,
+        key:-1
+      };
+      this.state={
+        todoList:[],
+        currList:clone(this.list)
+      };
+      this.GetName=this.GetName.bind(this);
+    }
     GetName (newName){
-        console.log(newName);
-          this.setState({lists : newName});
+        if(newName.key!==-1){
+          let list=this.state.list;
+          list=map(list,(e)=>{
+            if(e.key==newName.key)
+            {
+              e.name=newName.name;
+            }
+            return e;
+          });
+          this.setState({
+            list:list,
+            currList:clone(this.list)
+          });
+        }else{
+          let list=this.state.list;
+          list.unshift({name:newName.name,marked:false,key:new Date().getTime()});
+          this.setState({
+            list:list,
+            currList:clone(this.list)
+          });
+        }
       }
       render(){
         return(
           <div className="col-md-5" >
-            <label>TODO App</label>
-            <br />
-            <ul type="none" className="list-group">
-              <List name={this.state.lists} />
-            </ul>
-          <AddTodo  handleClick={this.GetName}/>
+            <List name={this.state.todoList} />
+            <AddTodo  handleClick={this.GetName}/>
           </div>
         );
       }
