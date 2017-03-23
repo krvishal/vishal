@@ -93,7 +93,7 @@
         key:-1
       };
       this.state={
-        todoList:[{name:'birthday',marked:false,key:1},{name:'abc',marked:false,key:2}],
+        todoList:[{name:'birthday',marked:true,key:1},{name:'abc',marked:false,key:2}],
         currList:_.clone(this.list)
       };
       this.getName=this.getName.bind(this);
@@ -111,7 +111,7 @@
           todoList:todoList,
           currList:_.clone(this.list)
         });
-        console.log(this.state.todoList);
+        return console.log(this.state.todoList);
       }
       render(){
         console.log(this.state.todoList);
