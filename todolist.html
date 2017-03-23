@@ -28,7 +28,6 @@
         render(){
           let output=this.props.list;
           let i = 0;
-          console.log(output[i].marked);
           let Badge=<span className="badge">Completed</span>;
           if(this.props.list[i].marked!=true)
           {
@@ -66,19 +65,20 @@
       // addTodo(e){
       //   this.setState({input : e.target.value});
       // }
-      // handleClick(e){
-      //   e.preventDefault();
-      //    let name= this.state.input;
-      //    this.props.handleClick(name);
-      //    this.setState({input:''});
-      // }
+      //  handleClick(e){
+      //     e.preventDefault();
+      //     let name= this.state.input;
+      //     this.props.handleClick(name);
+      //     this.setState({input:''});
+      //
+      //  }
       render(){
         return(
-          <form >
+          <form>
             <div className="form-group">
-              <input type='text' className="form-control" rel="newName" onChange={()=>this.props.getName}  placeholder="Your Todo.." />
+              <input type='text' className="form-control" name="newName" onChange={()=>this.props.getName}  placeholder="Your Todo.." />
             </div>
-            <button type="submit" className="btn btn-default" onClick={this.handleClick}>Submit</button>
+            <button type="submit" className="btn btn-default" onClick={this.handleClick} >Submit</button>
           </form>
         );
       }
@@ -90,7 +90,7 @@
       this.list={
         name:'',
         marked:false,
-        key:-1
+        key:0
       };
       this.state={
         todoList:[{name:'birthday',marked:true,key:1},{name:'abc',marked:false,key:2}],
@@ -100,18 +100,20 @@
     }
     getName (newName){
         let data=this.state.currList;
+        console.log("data"+data);
+        console.log(newName);
         data.name=newName;
         let keyValue=1;
         let id=this.state.todoList;
         id=map(id,(e)=>{ keyValue++; });
         data.key=keyValue;
+        console.log(keyValue);
         let todoList=this.state.todoList.slice();
         todoList.push(data);
         this.setState({
           todoList:todoList,
           currList:_.clone(this.list)
         });
-        return console.log(this.state.todoList);
       }
       render(){
         console.log(this.state.todoList);
