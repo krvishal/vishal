@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Fancybox</title>
+	<!--jquery-->
+	<script type="text/javascript" src="../jquery-3.1.1.js"></script>
+	<!--fancybox-->
+	<script type="text/javascript" src="../fancybox/dist/jquery.fancybox.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../fancybox/dist/jquery.fancybox.min.css">
+	<!--bootstrap-->
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+	<style>
+		p{
+			margin-top: 25px;
+			margin-left: 25px;
+		}
+	</style>
+	<script>
+		$('[data-fancybox]').fancybox({
+			image :{
+				protect: true
+			}
+		});
+		$.fancybox.default.speed=600;
+	</script>
+</head>
+<body>
+<div style="display: none;" id="hidden-content">
+	<h2>Hello ! User </h2>				
+	<p>This is Fancybox Example</p>
+</div>
+<b><p>Inline Fancybox Example</p></b>
+<a data-fancybox data-src="#hidden-content" href="javascript:;" class="btn btn-info" style="margin-top:5px;margin-left:30px">Demo</a>
+<br><br>
+<b><p>FancyBox For Image</p></b>
+<a href="image/image.jpg" data-fancybox="images" data-caption="First Image">
+    <img src="image/image.jpg" width="150px" height="150px" />
+</a>
+<a href="image/image3.jpg" data-fancybox="images" data-caption=" Second Image">
+    <img src="image/image3.jpg" width="150px" height="150px"/>
+</a>
+<a href="image/image2.jpg" data-fancybox="images" data-caption="Third Image">
+    <img src="image/image2.jpg" width="150px" height="150px"/>
+</a>
+<br><br>
+<b><p>Fancybox for Enbedding</p></b>
+<a data-fancybox href="https://www.youtube.com/watch?v=_sI_Ps7JSEk">
+  YouTube video
+</a>
+<br>
+<a data-fancybox href="https://vimeo.com/191947042">
+  Vimeo video
+</a>
+<br>
+<a data-fancybox href="https://www.google.com/maps/place/Googleplex/@37.4220041,-122.0833494,17z/data=!4m5!3m4!1s0x0:0x6c296c66619367e0!8m2!3d37.4219998!4d-122.0840572">
+  Google Map
+</a>
+</body>
+</html>
