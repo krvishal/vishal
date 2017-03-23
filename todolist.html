@@ -76,7 +76,7 @@
         return(
           <form >
             <div className="form-group">
-              <input type='text' className="form-control" rel="newName" onChange={()=>this.props.getName(this.refs.newName.value)}  placeholder="Your Todo.." />
+              <input type='text' className="form-control" rel="newName" onChange={()=>this.props.getName}  placeholder="Your Todo.." />
             </div>
             <button type="submit" className="btn btn-default" onClick={this.handleClick}>Submit</button>
           </form>
@@ -93,33 +93,22 @@
         key:-1
       };
       this.state={
-        todoList:[{name:'birthday',marked:true,key:1},{name:'abc',marked:false,key:2}],
+        todoList:[{name:'birthday',marked:false,key:1},{name:'abc',marked:false,key:2}],
         currList:_.clone(this.list)
       };
       this.getName=this.getName.bind(this);
     }
     getName (newName){
-        if(newName.key!==-1){
-          let list=this.state.list;
-          list=map(list,(e)=>{
-            if(e.key==newName.key)
-            {
-              e.name=newName.text;
-            }
-            return e;
-          });
-          this.setState({
-            list:list,
-            currList:_.clone(this.list)
-          });
-        }else{
-          let list=this.state.list;
-          list.unshift({name:newName.name,marked:false,key:new Date().getTime()});
-          this.setState({
-            list:list,
-            currList:_.clone(this.list)
-          });
-        }
+        let data=this.state.currList;
+        data.name=newName;
+        let keyValue=1;
+        let id=this.state.todoList;
+        id=map(id,(e)=>{ keyValue++; });
+        data.key=keyValue;
+        this.setState({
+          todoList:todoList.push(this.state.currList),
+          currList:_.clone(this.list)
+        });
       }
       render(){
         return(

@@ -113,29 +113,28 @@
     class InputText extends React.Component{
     constructor(props){
       super(props);
-      this.state={
-        todoList:''
+      this.list={
+        name:'',
+        marked:false,
+        id:''
       };
-      // this.listTodo={
-      //   name:''
-      // };
-      // this.currentlistTodo=clone(this.listTodo);
+      this.state={
+        todoList:[{name,"abc",marked:false,id:1}],
+        currTodo:clone(this.list)
+      };
       this.GetName=this.GetName.bind(this);
     }
-    GetName (newName){
+    getName (newName){
         let inputName=newName;
-         this.setState({todoList:inputName});
-        // var currList=this.currentlistTodo.name=inputName;
-        // this.setState({
-        //   todoList:currList,
-        //   currentlistTodo:clone(listTodo)
-        // })
+        let list=this.state.currTodo;
+        list.name=inputName;
+        
       }
       render(){
         return(
           <div className="col-md-5" >
             <List name={this.state.todoList} />
-            <AddTodo  handleClick={this.GetName}/>
+            <AddTodo  handleClick={this.getName}/>
           </div>
         );
       }
