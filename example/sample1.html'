@@ -15,30 +15,41 @@
         <div id="container"></div>
   </div>
   <script type="text/babel">
-      class List extends React.Component{
-        updateTodo(e)
-        {
-          this.props.updateTodo(e);
+
+      class Row extends React.Component{
+        constructor(){
+            super();
+            this.handleChange=this.handleChange.bind(this);
+        }
+        handleChange(e){
+          let checkBadge=this.props.list[e].marked==false?true:false;
+          this.props.list[e].marked=checkBadge;
         }
         render(){
-          let output=this.props.name;
-          let showData=output.map((e)=>{
-            let Badge=<span className="badge">Completed</span>;
-            if(e.marked!=true)
-            {
-              Badge="";
-            }
-            return(
-              <li className="list-group-item" key={e.key}>
-              <input type="checkbox" onClick={()=>this.updateTodo(e)} checked={e.marked}  className="form-check-input"/>    {e.name} {Badge}
-               </li>
-            );
-          });
+          let output=this.props.list;
+          let i = 0;
+          let Badge=<span className="badge">Completed</span>;
+          if(this.props.list[i].marked!=true)
+          {
+            Badge="";
+          }
+          console.log(this.props.list);
+          return(
+            <li className="list-group-item" id={this.props.list[i].key}>
+            <input type="checkbox" onClick={()=>this.handleChange(i)} checked={this.props.list[i].marked}  className="form-check-input"/>    {this.props.list[i].name} {Badge}
+             </li>
+          );
+        }
+      }
+      class List extends React.Component{
+        render(){
+        var listRow=<Row list={this.props.name} />;
+        var listTodo=this.props.name==""?"":listRow;
         return(
           <ul className="list-group">
           <label>TODO App</label>
           <br />
-            {showData}
+            {listTodo}
           </ul>
         );
         }
@@ -85,15 +96,18 @@
         currList:_.clone(this.list)
       };
       this.getName=this.getName.bind(this);
-      this.updateTodo=this.updateTodo.bind(this);
     }
     getName (newName){
+      console.log(newName);
         let data=this.state.currList;
+        console.log("data"+data);
+        console.log(newName);
         data.name=newName;
         let keyValue=1;
         let id=this.state.todoList;
         id= id.map((e)=>{ keyValue++; });
         data.key=keyValue;
+        console.log(keyValue);
         let todoList=this.state.todoList.slice();
         todoList.push(data);
         this.setState({
@@ -101,20 +115,12 @@
           currList:_.clone(this.list)
         });
       }
-      updateTodo(list){
-        let todos= this.state.todoList;
-        todos=todos.map((e)=>{
-          if(e.key==list.key){
-            e.marked=!e.marked;
-          }
-          return e;
-        });
-        this.setState({todoList:todos});
-      }
       render(){
+        console.log(this.state.todoList);
+        console.log(this.state.currList);
         return(
           <div className="col-md-5" >
-            <List name={this.state.todoList} updateTodo={this.updateTodo} />
+            <List name={this.state.todoList} />
             <AddTodo  onChange={this.getName}/>
           </div>
         );
