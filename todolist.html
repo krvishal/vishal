@@ -5,7 +5,7 @@
   <script src="js/react.min.js"></script>
   <script src="js/react-dom.min.js"></script>
   <script src="js/babel.min.js"></script>
-  <!-- <script src="bootstrap/jquery-3.1.1.js"></script> -->
+  <script src="bootstrap/jquery-3.1.1.js"></script>
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <script src="bootstrap/lodash.js"></script>
 </head>
@@ -19,28 +19,32 @@
       class Row extends React.Component{
         constructor(){
             super();
-            this.state={
-              isChecked:false
-            };
             this.handleChange=this.handleChange.bind(this);
         }
-        handleChange(){
-          let checkBadge=this.state.isChecked==false?true:false;
-          this.setState({isChecked:checkBadge});
+        handleChange(e){
+          let checkBadge=this.props.list[e].marked==false?true:false;
+          this.props.list[e].marked=checkBadge;
         }
         render(){
-          let Badge=this.state.isChecked==true?<span className="badge">Completed</span>:"";
-          console.log(this.props.name);
+          let output=this.props.list;
+          let i = 0;
+          console.log(output[i].marked);
+          let Badge=<span className="badge">Completed</span>;
+          if(this.props.list[i].marked!=true)
+          {
+            Badge="";
+          }
+          console.log(this.props.list);
           return(
-            <li className="list-group-item">
-            <input type="checkbox" onClick={this.handleChange} name="isChecked"  className="form-check-input"/>    {this.props.name} {Badge}
+            <li className="list-group-item" id={this.props.list[i].key}>
+            <input type="checkbox" onClick={()=>this.handleChange(i)} checked={this.props.list[i].marked}  className="form-check-input"/>    {this.props.list[i].name} {Badge}
              </li>
           );
         }
       }
       class List extends React.Component{
         render(){
-        var listRow=<Row name={this.props.name}/>;
+        var listRow=<Row list={this.props.name} />;
         var listTodo=this.props.name==""?"":listRow;
         return(
           <ul className="list-group">
@@ -55,26 +59,24 @@
     class AddTodo extends React.Component{
       constructor(props){
         super(props);
-        this.state={
-          input:''
-        };
-        this.addTodo=this.addTodo.bind(this);
-        this.handleClick=this.handleClick.bind(this);
+
+        //this.addTodo=this.addTodo.bind(this);
+        //this.handleClick=this.handleClick.bind(this);
       }
-      addTodo(e){
-        this.setState({input : e.target.value});
-      }
-      handleClick(e){
-        e.preventDefault();
-         let name= this.state.input;
-         this.props.handleClick(name);
-         this.setState({input:''});
-      }
+      // addTodo(e){
+      //   this.setState({input : e.target.value});
+      // }
+      // handleClick(e){
+      //   e.preventDefault();
+      //    let name= this.state.input;
+      //    this.props.handleClick(name);
+      //    this.setState({input:''});
+      // }
       render(){
         return(
           <form >
             <div className="form-group">
-              <input type='text' className="form-control" rel="newName" onChange={()=>this.props.newName(this.refs.newName.value)} value={this.state.input} placeholder="Your Todo.." />
+              <input type='text' className="form-control" rel="newName" onChange={()=>this.props.getName(this.refs.newName.value)}  placeholder="Your Todo.." />
             </div>
             <button type="submit" className="btn btn-default" onClick={this.handleClick}>Submit</button>
           </form>
@@ -91,10 +93,10 @@
         key:-1
       };
       this.state={
-        todoList:[{name:'birthday',marked:false,key:1}],
-        currList:clone(this.list)
+        todoList:[{name:'birthday',marked:true,key:1},{name:'abc',marked:false,key:2}],
+        currList:_.clone(this.list)
       };
-      this.GetName=this.GetName.bind(this);
+      this.getName=this.getName.bind(this);
     }
     getName (newName){
         if(newName.key!==-1){
@@ -102,7 +104,7 @@
           list=map(list,(e)=>{
             if(e.key==newName.key)
             {
-              e.name=newName.name;
+              e.name=newName.text;
             }
             return e;
           });
