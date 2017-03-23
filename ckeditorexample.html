@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CK Editor Example</title>
+	<!--jquery-->
+	<script type="text/javascript" src="../jquery-3.1.1.js"></script>
+	<!--ckeditor-->
+	<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="../ckeditor/adapters/jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#editor").ckeditor();
+		});
+	</script>
+</head>
+<body>
+<div>
+	<textarea id="editor" name="editor">&lt;p&gt;</textarea>
+</div>
+</body>
+</html>
