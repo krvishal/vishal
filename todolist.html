@@ -33,7 +33,7 @@
             }
             return(
               <li className="list-group-item" key={e.key}>
-              <input type="checkbox" onClick={()=>this.updateTodo(e)} checked={e.marked}  className="form-check-input"/>    {e.name} {Badge} <button className="btn-btn-info" onClick={()=>this.editTodo(e)}>Edit</button>
+              <input type="checkbox" onClick={()=>this.updateTodo(e)} checked={e.marked}  className="form-check-input"/>    {e.name} {Badge} <button className="btn" onClick={()=>this.editTodo(e)}>Edit</button>
                </li>
             );
           });
