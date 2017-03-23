@@ -105,12 +105,17 @@
         let id=this.state.todoList;
         id=map(id,(e)=>{ keyValue++; });
         data.key=keyValue;
+        let todoList=this.state.todoList.slice();
+        todoList.push(data);
         this.setState({
-          todoList:todoList.push(this.state.currList),
+          todoList:todoList,
           currList:_.clone(this.list)
         });
+        console.log(this.state.todoList);
       }
       render(){
+        console.log(this.state.todoList);
+        console.log(this.state.currList);
         return(
           <div className="col-md-5" >
             <List name={this.state.todoList} />
